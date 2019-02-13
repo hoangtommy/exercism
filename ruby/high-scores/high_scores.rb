@@ -9,26 +9,23 @@ class HighScores
   end
 
   def latest
-  	@scores.last
+  	scores.last
   end
 
   def personal_best
-  	@scores.max
+  	scores.max
   end
 
   def personal_top
-    @scores
-  	  .sort
-  	  .reverse
-  	  .slice(0, 3)
+    scores.max(3)
   end
 
   def report
-  	if @scores.last == @scores.max
-  	  "Your latest score was #{@scores.last}. That's your personal best!"
+  	if latest == personal_best
+  	  "Your latest score was #{latest}. That's your personal best!"
   	else
-  	  "Your latest score was #{@scores.last}. 
-  	  That's #{@scores.max - @scores.last} short of your personal best!"
+  	  %W[Your latest score was #{latest}.
+  	  That's #{personal_best - latest} short of your personal best!].join(' ')
   	end
   end
 end
